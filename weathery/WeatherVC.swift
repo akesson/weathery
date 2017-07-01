@@ -10,6 +10,10 @@ import UIKit
 
 class WeatherVC: UIViewController {
 
+    enum UpdateType {
+        case newData(WeatherData), error(Error), noData
+    }
+    
     @IBOutlet weak var placeLabel: UILabel!
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var cloudLabel: UILabel!
@@ -17,49 +21,43 @@ class WeatherVC: UIViewController {
     @IBOutlet weak var humidityLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     
-    var dateFormat = DateFormatter()
+    var dateFormat = DateFormatter(dateStyle: .none, timeStyle: .medium)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dateFormat.dateStyle = .none
-        dateFormat.timeStyle = .medium
-        
-        noData()
-        statusLabel.text = "Loading..."
+        updateData()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: .UIApplicationWillEnterForeground, object: nil)
+    }
+    
+    func updateData() {
+        updateLabelsWith(nil, status: "Loading...")
         WeatherService.requestWeather(response: onWeatherDataReply(_:))
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
     func onWeatherDataReply(_ reply: WeatherService.Reply) {
         switch reply {
         case .success(let data):
-            updateWith(data: data)
-            statusLabel.text = "Updated \(dateFormat.string(from: Date()))"
+            updateLabelsWith(data, status: "Updated \(dateFormat.string(from: Date()))")
         case .failure(let error):
-            statusLabel.text = "Error: \(error.localizedDescription)"
-            break
+            updateLabelsWith(nil, status: "Error: \(error.localizedDescription)")
         }
     }
     
-    private func updateWith(data: WeatherData) {
-        placeLabel.text = data.city
-        tempLabel.text = "\(data.temperature)º"
-        cloudLabel.text = "\(data.cloud)%"
-        windLabel.text = "\(data.windSpeed)m/s"
-        humidityLabel.text = "\(data.humidity)%"
-    }
-    
-    private func noData() {
-        placeLabel.text = "---"
-        tempLabel.text = "-"
-        cloudLabel.text = "-"
-        windLabel.text = "-"
-        humidityLabel.text = "-"
+    private func updateLabelsWith(_ data: WeatherData?, status: String) {
+        statusLabel.text = status
+        if let data = data {
+            placeLabel.text = data.city
+            tempLabel.text = String(format: "%.0f°", data.temperature)
+            cloudLabel.text = "\(data.cloud)%"
+            windLabel.text = "\(data.windSpeed)m/s"
+            humidityLabel.text = "\(data.humidity)%"
+        } else {
+            placeLabel.text = "---"
+            tempLabel.text = "-"
+            cloudLabel.text = "-"
+            windLabel.text = "-"
+            humidityLabel.text = "-"
+        }
     }
 }
 
