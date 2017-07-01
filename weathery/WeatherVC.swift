@@ -18,7 +18,8 @@ class WeatherVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        noData()
+        WeatherService.requestWeather(response: onWeatherDataReply(_:))
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,5 +28,29 @@ class WeatherVC: UIViewController {
     }
 
 
+    func onWeatherDataReply(_ reply: WeatherService.Reply) {
+        switch reply {
+        case .success(let data):
+            updateWith(data: data)
+        case .failure(let error):
+            break
+        }
+    }
+    
+    private func updateWith(data: WeatherData) {
+        placeLabel.text = data.city
+        tempLabel.text = "\(data.temperature)º"
+        cloudLabel.text = "\(data.cloud)%"
+        windLabel.text = "\(data.windSpeed)m/s"
+        humidityLabel.text = "\(data.humidity)%"
+    }
+    
+    private func noData() {
+        placeLabel.text = "---"
+        tempLabel.text = "-"
+        cloudLabel.text = "-"
+        windLabel.text = "-"
+        humidityLabel.text = "-"
+    }
 }
 
