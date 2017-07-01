@@ -15,10 +15,17 @@ class WeatherVC: UIViewController {
     @IBOutlet weak var cloudLabel: UILabel!
     @IBOutlet weak var windLabel: UILabel!
     @IBOutlet weak var humidityLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
+    
+    var dateFormat = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dateFormat.dateStyle = .none
+        dateFormat.timeStyle = .medium
+        
         noData()
+        statusLabel.text = "Loading..."
         WeatherService.requestWeather(response: onWeatherDataReply(_:))
     }
 
@@ -32,7 +39,9 @@ class WeatherVC: UIViewController {
         switch reply {
         case .success(let data):
             updateWith(data: data)
+            statusLabel.text = "Updated \(dateFormat.string(from: Date()))"
         case .failure(let error):
+            statusLabel.text = "Error: \(error.localizedDescription)"
             break
         }
     }

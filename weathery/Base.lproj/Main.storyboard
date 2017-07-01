@@ -30,17 +30,31 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Helsinki" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="j2m-xq-VFq">
-                                        <rect key="frame" x="63" y="83" width="217.5" height="70"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="70" id="S1T-hv-evH"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="70"/>
-                                        <color key="textColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="8Uh-cb-mjt" userLabel="city">
+                                        <rect key="frame" x="63" y="80.5" width="217.5" height="80"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Helsinki" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="j2m-xq-VFq">
+                                                <rect key="frame" x="0.0" y="0.0" width="217.5" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="S1T-hv-evH"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="70"/>
+                                                <color key="textColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jsU-Pu-5tv">
+                                                <rect key="frame" x="0.0" y="60" width="35" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="g0n-nP-8oV"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" red="0.58431372550000005" green="0.58431372550000005" blue="0.58431372550000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="IN7-6Z-yda" userLabel="temp">
-                                        <rect key="frame" x="120" y="233.5" width="103.5" height="75"/>
+                                        <rect key="frame" x="120" y="238.5" width="103.5" height="75"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32º" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J2q-fv-yfB">
                                                 <rect key="frame" x="0.0" y="0.0" width="103.5" height="55"/>
@@ -63,7 +77,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="nGr-2P-Ger">
-                                        <rect key="frame" x="128" y="389" width="87" height="175"/>
+                                        <rect key="frame" x="128" y="391.5" width="87" height="175"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ltW-xx-hPs" userLabel="measurements">
                                                 <rect key="frame" x="0.0" y="0.0" width="87" height="175"/>
@@ -210,6 +224,7 @@
                         <outlet property="cloudLabel" destination="ynI-aL-PsP" id="2YY-XC-4nH"/>
                         <outlet property="humidityLabel" destination="aJv-o7-UpU" id="CWZ-Mp-wCZ"/>
                         <outlet property="placeLabel" destination="j2m-xq-VFq" id="Wgi-n3-25D"/>
+                        <outlet property="statusLabel" destination="jsU-Pu-5tv" id="uPP-Gv-w2X"/>
                         <outlet property="tempLabel" destination="J2q-fv-yfB" id="3a1-VV-3W2"/>
                         <outlet property="windLabel" destination="pAc-ui-JeF" id="c5o-we-S2H"/>
                     </connections>
