@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C3736B4A1F07F2B30036DA93 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3736B491F07F2B30036DA93 /* Alamofire.framework */; };
 		C3CB6EB11F07BB8500987990 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CB6EB01F07BB8500987990 /* AppDelegate.swift */; };
 		C3CB6EB31F07BB8500987990 /* WeatherVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CB6EB21F07BB8500987990 /* WeatherVC.swift */; };
 		C3CB6EB61F07BB8500987990 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3CB6EB41F07BB8500987990 /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C3736B491F07F2B30036DA93 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		C3CB6EAD1F07BB8500987990 /* weathery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = weathery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3CB6EB01F07BB8500987990 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3CB6EB21F07BB8500987990 /* WeatherVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherVC.swift; sourceTree = "<group>"; };
@@ -54,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3736B4A1F07F2B30036DA93 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +77,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C3736B481F07F2B30036DA93 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C3736B491F07F2B30036DA93 /* Alamofire.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C3CB6EA41F07BB8500987990 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +92,7 @@
 				C3CB6EC41F07BB8500987990 /* weatheryTests */,
 				C3CB6ECF1F07BB8500987990 /* weatheryUITests */,
 				C3CB6EAE1F07BB8500987990 /* Products */,
+				C3736B481F07F2B30036DA93 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -135,6 +147,7 @@
 				C3CB6EA91F07BB8500987990 /* Sources */,
 				C3CB6EAA1F07BB8500987990 /* Frameworks */,
 				C3CB6EAB1F07BB8500987990 /* Resources */,
+				C3736B4B1F07F2C80036DA93 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -253,6 +266,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C3736B4B1F07F2C80036DA93 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C3CB6EA91F07BB8500987990 /* Sources */ = {
@@ -415,6 +445,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = weathery/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -430,6 +464,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = weathery/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
