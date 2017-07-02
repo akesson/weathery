@@ -9,28 +9,53 @@
 import XCTest
 
 class weatheryUITests: XCTestCase {
-        
+    
+    let app = XCUIApplication()
+    
     override func setUp() {
         super.setUp()
         
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
+        app.launchArguments.append("UI-TESTING")
+        app.launchEnvironment["WeatherRequest0"] = "reply: { \"main\" : { \"humidity\" : 48, \"temp\" : 292.15 }, \"name\" : \"Helsinki\", \"clouds\" : { \"all\" : 20 }, \"wind\" : { \"speed\" : 4.6 } }"
+        app.launchEnvironment["WeatherRequest1"] = "reply: { \"main\" : { \"humidity\" : 67, \"temp\" : 302.15 }, \"name\" : \"Madrid\", \"clouds\" : { \"all\" : 50 }, \"wind\" : { \"speed\" : 4.6 } }"
+        app.launchEnvironment["WeatherRequest2"] = "error: Test error"
 
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        app.launch()
     }
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+    func testLoadOK() {
+        XCTAssertTrue(app.staticTexts["Helsinki"].exists)
+        XCTAssertTrue(app.staticTexts["20%"].exists)
+        XCTAssertTrue(app.staticTexts["4.6m/s"].exists)
+        XCTAssertTrue(app.staticTexts["48%"].exists)
+        //XCTAssertTrue(app.staticTexts["15°"].exists) the degree symbol breaks the test
+
+        //by backgrounding and re-opening the app it reloads the data
+        appToBackgroundAndForeground()
+
+        XCTAssertTrue(app.staticTexts["Madrid"].exists)
+        XCTAssertTrue(app.staticTexts["50%"].exists)
+        XCTAssertTrue(app.staticTexts["4.6m/s"].exists)
+        XCTAssertTrue(app.staticTexts["67%"].exists)
+
+        //by backgrounding and re-opening the app it reloads the data
+        appToBackgroundAndForeground()
+        
+        XCTAssertTrue(app.staticTexts["---"].exists)
+        XCTAssertTrue(app.staticTexts["-"].exists)
+        XCTAssertTrue(!app.staticTexts["Madrid"].exists)
+        XCTAssertTrue(!app.staticTexts["50%"].exists)
+        XCTAssertTrue(!app.staticTexts["4.6m/s"].exists)
+        XCTAssertTrue(!app.staticTexts["67%"].exists)
+        
+        
     }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    private func appToBackgroundAndForeground() {
+        XCUIDevice.shared().press(XCUIDeviceButton.home)
+        Thread.sleep(forTimeInterval: 1.5)
+        XCUIDevice.shared().siriService.activate(voiceRecognitionText: "Open weathery")
+        Thread.sleep(forTimeInterval: 1.5)
     }
-    
 }
