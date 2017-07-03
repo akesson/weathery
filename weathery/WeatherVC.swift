@@ -8,12 +8,8 @@
 
 import UIKit
 
-class WeatherVC: UIViewController {
+class WeatherVC: UIViewController, WeatherVMDelegate {
 
-    enum UpdateType {
-        case newData(WeatherData), error(Error), noData
-    }
-    
     @IBOutlet weak var placeLabel: UILabel!
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var cloudLabel: UILabel!
@@ -21,43 +17,28 @@ class WeatherVC: UIViewController {
     @IBOutlet weak var humidityLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     
+    let vm = WeatherVM()
+    
     var dateFormat = DateFormatter(dateStyle: .none, timeStyle: .medium)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateData()
-        NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: .UIApplicationWillEnterForeground, object: nil)
+        vm.delegate = self
+        vm.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
     }
     
-    func updateData() {
-        updateLabelsWith(nil, status: "Loading...")
-        WeatherService.requestWeather(response: onWeatherDataReply(_:))
-    }
-
-    func onWeatherDataReply(_ reply: WeatherService.Reply) {
-        switch reply {
-        case .success(let data):
-            updateLabelsWith(data, status: "Updated \(dateFormat.string(from: Date()))")
-        case .failure(let error):
-            updateLabelsWith(nil, status: "Error: \(error.localizedDescription)")
-        }
+    func willEnterForeground() {
+        vm.willEnterForeground()
     }
     
-    private func updateLabelsWith(_ data: WeatherData?, status: String) {
-        statusLabel.text = status
-        if let data = data {
-            placeLabel.text = data.city
-            tempLabel.text = String(format: "%.0f°", data.temperature)
-            cloudLabel.text = "\(data.cloud)%"
-            windLabel.text = "\(data.windSpeed)m/s"
-            humidityLabel.text = "\(data.humidity)%"
-        } else {
-            placeLabel.text = "---"
-            tempLabel.text = "-"
-            cloudLabel.text = "-"
-            windLabel.text = "-"
-            humidityLabel.text = "-"
-        }
+    func weatherUpdated() {
+        statusLabel.text = vm.status
+        placeLabel.text = vm.place
+        tempLabel.text = vm.temp
+        cloudLabel.text = vm.cloud
+        windLabel.text = vm.wind
+        humidityLabel.text = vm.humidity
     }
 }
 
