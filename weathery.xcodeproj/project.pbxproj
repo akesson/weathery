@@ -12,6 +12,9 @@
 		C3736B4F1F0802B10036DA93 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3736B4E1F0802B10036DA93 /* WeatherData.swift */; };
 		C3736B511F0810420036DA93 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3736B501F0810420036DA93 /* SwiftyJSON.framework */; };
 		C3736B551F0820AC0036DA93 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3736B541F0820AC0036DA93 /* DateFormatter.swift */; };
+		C3941ADB1F0C036900515E51 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3941AD91F0C036900515E51 /* RxCocoa.framework */; };
+		C3941ADC1F0C036900515E51 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3941ADA1F0C036900515E51 /* RxSwift.framework */; };
+		C3941ADE1F0C0A2100515E51 /* RxAlamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3941ADD1F0C0A2100515E51 /* RxAlamofire.framework */; };
 		C39FE1C91F0A210100E362A7 /* WeatherVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39FE1C81F0A210100E362A7 /* WeatherVM.swift */; };
 		C3A566441F094BB300198375 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A566431F094BB300198375 /* Configuration.swift */; };
 		C3A566461F094F3E00198375 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A566451F094F3E00198375 /* String.swift */; };
@@ -49,6 +52,9 @@
 		C3736B4E1F0802B10036DA93 /* WeatherData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		C3736B501F0810420036DA93 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		C3736B541F0820AC0036DA93 /* DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		C3941AD91F0C036900515E51 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
+		C3941ADA1F0C036900515E51 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
+		C3941ADD1F0C0A2100515E51 /* RxAlamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxAlamofire.framework; path = Carthage/Build/iOS/RxAlamofire.framework; sourceTree = "<group>"; };
 		C39FE1C81F0A210100E362A7 /* WeatherVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherVM.swift; sourceTree = "<group>"; };
 		C3A566431F094BB300198375 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		C3A566451F094F3E00198375 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -75,6 +81,9 @@
 			files = (
 				C3736B4A1F07F2B30036DA93 /* Alamofire.framework in Frameworks */,
 				C3736B511F0810420036DA93 /* SwiftyJSON.framework in Frameworks */,
+				C3941ADE1F0C0A2100515E51 /* RxAlamofire.framework in Frameworks */,
+				C3941ADB1F0C036900515E51 /* RxCocoa.framework in Frameworks */,
+				C3941ADC1F0C036900515E51 /* RxSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +107,9 @@
 		C3736B481F07F2B30036DA93 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C3941ADD1F0C0A2100515E51 /* RxAlamofire.framework */,
+				C3941AD91F0C036900515E51 /* RxCocoa.framework */,
+				C3941ADA1F0C036900515E51 /* RxSwift.framework */,
 				C3736B501F0810420036DA93 /* SwiftyJSON.framework */,
 				C3736B491F07F2B30036DA93 /* Alamofire.framework */,
 			);
@@ -310,6 +322,9 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxAlamofire.framework",
 			);
 			name = "Carthage copy symfiles";
 			outputPaths = (

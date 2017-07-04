@@ -56,6 +56,6 @@ class weatheryUITests: XCTestCase {
         XCUIDevice.shared().press(XCUIDeviceButton.home)
         Thread.sleep(forTimeInterval: 1.5)
         XCUIDevice.shared().siriService.activate(voiceRecognitionText: "Open weathery")
-        Thread.sleep(forTimeInterval: 1.5)
+        Thread.sleep(forTimeInterval: 2.5)
     }
 }
