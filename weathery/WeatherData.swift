@@ -31,6 +31,7 @@ struct WeatherData {
             let humidity = json["main"]["humidity"].int
             
             else {
+                
             throw DataError.invalidJSON(json.description)
         }
         
